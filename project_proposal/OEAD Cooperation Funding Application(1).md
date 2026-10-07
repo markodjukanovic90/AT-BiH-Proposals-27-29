@@ -1,0 +1,47 @@
+## Hybridizing Metaheuristics with Generative AI Techniques for Selected Graph Problems
+
+- Considered problems
+	- classical problems on graphs for basic benchmarking 
+		- *motivation:* structurally simple, easier to understand and compare with exact techniques, literature
+		- MISP with budgeted neighborhood blocking (as classical MISP is too easy)
+		- MaxCut
+		- Densest k-subgraph (DkS)
+	- Anvanced problems/applications
+		- *motivation:* more complex, more real-world
+		- Minimum consistent subset problem
+		- Dynamic Electric Autonomous Dial-a-Ride Problem
+			- *motivation:* in dynamic problems, learning makes a lot of sense to avoid myopic decisions, i.e., consider expected future in the decisions
+		- Maybe also mention repositioning?
+		- How to possibly integrate decision focused learning ?
+- Approaches
+	- *should extend our work so far*
+	- recently worked on 
+		- EADARP, Dynamic EADARP
+			- LNS, CMSA, column generation hybrids
+		- GFlowNets for destroy set creation in LNS for MISP, MaxCut, DkS
+		- Denoising Diffusion / Flow Matching approaches for graph problems
+			- similaryl as GFlowNets, these approaches are able to produce many diverse promising structures, which is important for destroy sets
+			- promising for COPS, see e.g., DIFUSCO, but on its own as end-to-end learning approaches usually clearly too weak
+	- Possible work packages/directions of work
+		- Diffusion approaches for 
+			- destroy set generation in LNS
+			- heuristic solution generation in CMSA, also with GFlowNets
+		- Decision focused learning (DFL) for the two dynamic vehicle routing problems similarly to https://pubsonline.informs.org/doi/10.1287/trsc.2023.0107
+			- DFL: a pproach that trains a predictive model not to minimize prediction error (e.g., MSE), but to directly minimize the _regret_ or loss of the downstream optimization decisions made using its predictions, so that the model's errors matter only insofar as they affect decision quality. As differentiation usually is not possible through the solver, certain tricks/surrogate gradients are applied
+			- (actually, we are currently already working on this)
+		- Learning policies to schedule the application of LNS iterations/neighborhoods, CMSA heuristic solution generation/merging and application of column generation, diverse control parameters in hybrid approaches
+			- essentially in the line what you have already described but integrating also LNS/CMSA
+	- fundamental methods we build on
+		- CMSA, LNS (as a kind of orthogonal method to CMSA), Column Generation for creating solution components in CMSA, underlying MILP solver
+		- machine learning approaches
+			- classical methods such as Gradient Boosted Trees?
+			- MLPs, GNNs, extended towards GFlowNets, Diffusion/Flow matching approaches
+			- decision focused learning
+- Work Packages
+	- LNS/CMAS/CG Hybrid
+	- Diffusion and GFlowNets for Destroy Set Generation in LNS and Candidate Solution Generation in CMAS
+	- Generative AI (LLMs) for generating lower level heuristics
+	- Application 1: Minimum Consistent Subset Problem
+	- Application 2: (Dynamic) EADARP
+
+
